@@ -27,11 +27,25 @@ function convertMathText() {
         return p1.split('').map(subscriptChar).join('');
       });
 
-      // Replace any division (e.g., a / b -> ᵃ/₆)
+      // Replace division (e.g., a / b -> ᵃ/₆)
       var divisionRegex = /(\S+)\s*\/\s*(\S+)/g;
       replaceTextWithFormatting(text, divisionRegex, function(match, p1, p2) {
         return constructFraction(p1, p2);
       });
+
+      // Replace exact "sqrt" with the square root symbol
+      var sqrtRegex = /sqrt/g;
+      replaceTextWithFormatting(text, sqrtRegex, function() {
+        return '√';
+      });
+
+      // Replace Greek letter names with symbols (e.g., "alpha" -> "α")
+      for (var name in greekLetters) {
+        var greekRegex = new RegExp('\\b' + name + '\\b', 'g');
+        replaceTextWithFormatting(text, greekRegex, function() {
+          return greekLetters[name];
+        });
+      }
     }
   }
 }
@@ -81,3 +95,12 @@ function superscriptChar(char) {
   };
   return superscripts[char] || char;
 }
+
+// Greek letter dictionary
+var greekLetters = {
+  'alpha': 'α', 'beta': 'β', 'gamma': 'γ', 'delta': 'δ', 'epsilon': 'ε',
+  'zeta': 'ζ', 'eta': 'η', 'theta': 'θ', 'iota': 'ι', 'kappa': 'κ',
+  'lambda': 'λ', 'mu': 'μ', 'nu': 'ν', 'xi': 'ξ', 'omicron': 'ο',
+  'pi': 'π', 'rho': 'ρ', 'sigma': 'σ', 'tau': 'τ', 'upsilon': 'υ',
+  'phi': 'φ', 'chi': 'χ', 'psi': 'ψ', 'omega': 'ω'
+};
