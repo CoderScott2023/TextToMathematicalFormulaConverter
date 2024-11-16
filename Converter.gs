@@ -2,7 +2,6 @@ function doPost(e) {
     const responseText = "Math text processed successfully.";
     const output = ContentService.createTextOutput(responseText)
         .setMimeType(ContentService.MimeType.TEXT);
-    output.appendHeader("Access-Control-Allow-Origin", "*");
     return output;
 }
 
@@ -81,7 +80,7 @@ function subscriptChar(char) {
     'α': 'ᵦ', 'β': 'ᵦ', 'γ': 'ᵧ', 'δ': 'ᵟ', 'ε': 'ₑ',
     'ζ': 'ₓ', 'η': 'ₕ', 'θ': 'ᶿ', 'ι': 'ᵢ', 'κ': 'ₖ',
     'λ': 'ₗ', 'μ': 'ₘ', 'ν': 'ᵥ', 'ξ': 'ₓ', 'ο': 'ₒ',
-    'π': 'ₚ', 'ρ': 'ᵣ', 'σ': 'ₛ', 'τ': 'ₜ', 'υ': 'ᵤ',
+     'ρ': 'ᵣ', 'σ': 'ₛ', 'τ': 'ₜ', 'υ': 'ᵤ',
     'φ': 'ᵠ', 'χ': 'ₓ', 'ψ': '₧', 'ω': 'ₒ'
   };
   return subscripts[char] || char;
@@ -101,7 +100,7 @@ function superscriptChar(char) {
     'α': 'ᵅ', 'β': 'ᵝ', 'γ': 'ᵞ', 'δ': 'ᵟ', 'ε': 'ᵋ',
     'ζ': 'ᶻ', 'η': 'ʰ', 'θ': 'ᶿ', 'ι': 'ⁱ', 'κ': 'ᵏ',
     'λ': 'ˡ', 'μ': 'ᵐ', 'ν': 'ⁿ', 'ξ': 'ˣ', 'ο': 'ᵒ',
-    'π': 'ᵖ', 'ρ': 'ʳ', 'σ': 'ˢ', 'τ': 'ᵗ', 'υ': 'ᵘ',
+     'ρ': 'ʳ', 'σ': 'ˢ', 'τ': 'ᵗ', 'υ': 'ᵘ',
     'φ': 'ᵠ', 'χ': 'ˣ', 'ψ': 'ᵯ', 'ω': 'ʷ'
   };
   return superscripts[char] || char;
@@ -115,3 +114,5 @@ var greekLetters = {
   'pi': 'π', 'rho': 'ρ', 'sigma': 'σ', 'tau': 'τ', 'upsilon': 'υ',
   'phi': 'φ', 'chi': 'χ', 'psi': 'ψ', 'omega': 'ω'
 };
+
+convertMathText();
